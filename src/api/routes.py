@@ -12,7 +12,10 @@ api = Blueprint('api', __name__)
 CORS(api)
 
 
+#Controlador
 @api.route('/hello', methods=['POST', 'GET'])
+
+#Servicio
 def handle_hello():
 
     response_body = {
