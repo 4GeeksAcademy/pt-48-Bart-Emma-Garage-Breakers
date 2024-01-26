@@ -54,5 +54,4 @@ class Motorbikes(db.Model):
             "mileage": self.mileage,
             "tasks": self.tasks,
             "status": self.status,
-            "clients": self.clients,
         }
