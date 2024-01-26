@@ -1,0 +1,65 @@
+.reception-wrapper {
+    display: flex;
+    background-color: white;
+    background-image: url("../img/logoform.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 8%;
+    position: relative;
+}
+
+.background-reception {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+}
+
+.contenedor-datos {
+    display: flex;
+    flex-direction: column;
+    text-shadow: 5px 5px 15px rgb(255, 115, 0);
+    font-family: "Racing Sans One", sans-serif;
+    position: absolute;
+}
+
+input {
+    background-color: transparent;
+    box-shadow: 5px 5px 15px rgb(255, 115, 0);
+    font-weight: bold;
+}
+
+li {
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: end;
+    gap: 15px;
+}
+
+.boton-volver-recepcion {
+    position: absolute;
+    bottom: 7%;
+    left: 90%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    width: 100px;
+    height: 45px;
+    border-radius: 40px;
+    background-color: white;
+    border: 3px solid black;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.5rem;
+    font-family: "Racing Sans One", sans-serif;
+    color: grey;
+    justify-content: center;
+    box-shadow: 10px 10px 1rem rgb(255, 115, 0);
+}
+
+.boton-volver-recepcion:hover {
+    color: rgb(255, 115, 0);
+}
+
