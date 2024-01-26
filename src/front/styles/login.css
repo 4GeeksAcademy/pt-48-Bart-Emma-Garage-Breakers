@@ -1,0 +1,138 @@
+.login-wrapper {
+    display: flex;
+    align-items: row;
+    background-image: url("../img/fondo.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    position: relative;
+  }
+  
+  .login-background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+  }
+
+  .login {
+    display: flex;
+    height: 90%;
+    margin-left: 3%;
+    padding: 3em;
+    position: relative;
+    z-index: 10;
+  }
+  
+  section {
+    font-family: "Racing Sans One", sans-serif;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 9rem;
+  }
+  
+  .login-contenedor {
+    position: relative;
+    width: 400px;
+    border: 2px solid rgb(255, 115, 0);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 15px 15px 2rem black;
+  }
+  
+  .login-contenedor h2 {
+    font-size: 2.3rem;
+    text-shadow: black;
+    color: rgb(255, 115, 0);
+    text-shadow: 0.2em 0.2em 0.2em black;
+    text-align: center;;
+  }
+  
+  .input-contenedor {
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    color: white;
+  }
+  
+  .input-contenedor label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 1.5rem;
+    pointer-events: none;
+    transition: .6s;
+    font-family: "Racing Sans One", sans-serif;
+  }
+  
+  input:focus ~ label,
+  input:valid ~ label{
+    top: -5px;
+  }
+  
+  .input-contenedor input {
+    width: 105%;
+    height: 50px;
+    background-color: transparent;
+    font-size: 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 10px 10px 1rem black
+  }
+  
+  .input-contenedor i {
+    position: absolute;
+    color: rgb(255, 115, 0); 
+    font-size: 1.6rem;
+    top: 19px;
+    right: 8px;
+  }
+  
+  .boton-iniciar {
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    background-color: black;
+    border: 3px solid rgb(255, 115, 0);
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.5rem;
+    font-family: "Racing Sans One", sans-serif;
+    color: white;
+    transition: .4s;
+    box-shadow: 10px 10px 1rem black;
+  }
+  
+  .boton-iniciar:hover {
+    background-color: rgb(255, 115, 0);
+  }
+  
+  .registrar {
+    font-size: 1.1rem;
+    color: white;
+    text-align: center;
+    text-shadow: 5px 5px 5px black;
+    margin: 20px 0 10px;
+  }
+  
+  .registrar p a {
+    text-decoration: none;
+    color: rgb(255, 115, 0);
+    font-weight: bold;
+    transition: .3s;
+  }
+  
+  .registrar p a:hover {
+    text-decoration: underline;
+  }
