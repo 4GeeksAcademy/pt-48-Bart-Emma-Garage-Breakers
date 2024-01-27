@@ -2,8 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
-
-import { Login } from "./pages/login.jsx";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { Login } from "./pages/login";
@@ -29,8 +27,7 @@ const Layout = () => {
                 <ScrollToTop>
                 
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Login />} path="/login" />
+                        <Route element={<Login />} path="/" />
                         <Route element={<Main />} path="/main" />
                         <Route element={<Reception />} path="/reception" />
                         <Route element={<Garage />} path="/garage" />
