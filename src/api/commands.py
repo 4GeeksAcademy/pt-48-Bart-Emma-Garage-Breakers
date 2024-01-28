@@ -15,10 +15,9 @@ def setup_commands(app):
     Note: 5 is the number of users to add
     """
     @app.cli.command("insert-test-users") # name of our command
-    @click.argument("count") # argument of out command
-    def insert_test_users(count):
+    def insert_test_users():
         print("Creating test users")
-        for x in range(1, int(count) + 1):
+        for x in range(1, int(5) + 1):
             user = User()
             user.email = "test_user" + str(x) + "@test.com"
             user.password = "123456"

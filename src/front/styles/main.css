@@ -1,0 +1,122 @@
+.main-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 115, 0);
+    position: relative;
+}
+    
+
+.main-background{
+    background-image: url('../img/main.png');
+    height: 75%;
+    position: absolute;
+}
+
+.lateralIzq {
+    display: flex;
+    height: 100vh;
+    float: left;
+}
+
+.lateralDch {
+    display: flex;
+    height: 100vh;
+    float: right;
+}
+
+.lateralIzq img {
+    height: 100vh;
+    margin: 0;
+}
+
+.lateralDch img {
+    height: 100vh;
+    margin: 0;
+}
+
+.section-main-reception {
+    position: relative;
+    display: flex;
+    margin: auto;
+    height: 100vh;
+}
+
+.boton-volver-main {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    width: 15%;
+    height: 45px;
+    border-radius: 40px;
+    background-color: white;
+    border: 3px solid black;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.5rem;
+    font-family: "Racing Sans One", sans-serif;
+    color: grey;
+    justify-content: center;
+    box-shadow: 10px 10px 1rem black;
+}
+
+.boton-volver-main:hover {
+    color: rgb(255, 115, 0);
+}
+
+.boton-recepcion {
+    position: absolute;
+    transform: translate(-4.8rem, 0.8rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 45px;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.3rem;
+    font-family: "Racing Sans One", sans-serif;
+    color: white;
+    text-align: center;
+    box-shadow: none;
+}
+
+.boton-recepcion:hover {
+    color: rgb(255, 115, 0);
+}
+
+.boton-taller {
+    transform: translate(20.5em, 2.2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: 45px;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.3rem;
+    font-family: "Racing Sans One", sans-serif;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.boton-taller:hover {
+    color: rgb(255, 115, 0);
+}
+
+a {
+    text-decoration: none;
+}

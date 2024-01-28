@@ -21,6 +21,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
+			login: async (email, password) => {
+                const actions = getActions();
+                const requestOptions = {
+                  method: "POST",
+                  headers: {
+                    "Content-type": "application/json"
+                  },
+                  body: JSON.stringify({
+                    "username": email,
+                    "password": password
+                  })
+                };
+                try {
+                  const resp = await fetch(process.env.BACKEND_URL + "api/login", requestOptions)
+                  const data = await resp.json();
+                  console.log("ok", data);
+                  localStorage.setItem("token", data.access_token);
+                  localStorage.setItem("username", email);
+                  return true;
+                }
+                catch (error) {
+                  console.error("There has been an error login in", error)
+                }
+            },
+
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
