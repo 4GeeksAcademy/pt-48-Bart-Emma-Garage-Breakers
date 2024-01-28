@@ -1,25 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../img/logo.png";
 import background from "../../img/fondo.jpg";
 import "../../styles/login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 
 export const Login = () => {
     const { actions } = useContext(Context);
+    const [test, setTest] = useState();
     const handleLoginForm = async (e) => {
         e.preventDefault();
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        console.log(email, password);
         const token = await actions.login(email, password);
     
-        if (token) {
+        if (localStorage.getItem("token")!="undefined") {
+            setTest(true);
           localStorage.setItem("jwt", token);
         } else {
           console.log("Wrong username or password");
         }
       };
+      if (test == true) {
+      return <Navigate to ="/main" /> }
     return (<>
        <div className="login-wrapper">
         <img className="login-background" src={ background } />
