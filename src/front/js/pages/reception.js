@@ -2,37 +2,75 @@ import React, { useContext, useState } from "react";
 import logoform from "../../img/logoform.png";
 import "../../styles/reception.css";
 import { Link, Navigate } from "react-router-dom";
+import { Context } from "../store/appContext.js";
 
-export const Reception = () =>  {
+export const Reception = () => {
+    const { actions } = useContext(Context);
     const [protect, setProtect] = useState();
-    const [nametask, setNameTask] = useState(' ')
+    const [nametask, setNameTask] = useState(' ');
     const [task, setTask] = useState([]);
+    const [cliente, setCliente] = useState();
 
+    const handleReceptionForm = async (e) => {
+        e.preventDefault();
+        let tasks = task.map(t => [t.nametask, 0])
+        tasks = Object.fromEntries(tasks)
+        tasks = JSON.stringify(tasks)
+        const clienteBody = {
+            "name": document.getElementById("nombre").value,
+            "surname": document.getElementById("apellidos").value,
+            "email": document.getElementById("email").value,
+            "phone": document.getElementById("telefono").value
+        }
+        console.log(clienteBody, "suicidio");
+        await handleMotorbikeForm(await actions.addCliente(clienteBody), tasks);
+    }
+    const handleMotorbikeForm = async (clienteID, tasks) => {
+
+        const motoBody = {
+            "brand": document.getElementById("marca").value,
+            "model": document.getElementById("modelo").value,
+            "mileage": document.getElementById("kilometros").value,
+            "year": document.getElementById("año").value,
+            "tasks": { "matarme": 0 },
+            "client_id": clienteID
+        }
+        console.log(motoBody, "caca")
+        console.log(clienteID, "maximum cacs")
+        const addMoto = await actions.addMoto(document.getElementById("marca").value,
+            document.getElementById("modelo").value,
+            document.getElementById("año").value,
+            document.getElementById("kilometros").value,
+            JSON.stringify(tasks),
+            clienteID);
+    };
     let taskId = 0;
     async function isPrivate() {
         try {
-          const requestOptions = {
-            method: "GET",
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          };
-          const data = await fetch(
-            process.env.BACKEND_URL + "api/protected",
-            requestOptions
-          );
-          setProtect(data.status);
-          let response = await data.json();
+            const requestOptions = {
+                method: "GET",
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token"),
+                },
+            };
+            const data = await fetch(
+                process.env.BACKEND_URL + "api/protected",
+                requestOptions
+            );
+            setProtect(data.status);
+            let response = await data.json();
         } catch (error) {
-          let details = { Error: error };
-          console.log("Error en fetch private", details);
+            let details = { Error: error };
+            console.log("Error en fetch private", details);
         }
-      }
+    }
+
     if (protect != undefined && protect != 200) {
         return <Navigate to="/" />;
-      }
- 
-      isPrivate();
+    }
+
+
+    isPrivate();
     return (<>
         <div className="reception-wrapper">
             <img className="background-reception" src={logoform} />
@@ -67,20 +105,16 @@ export const Reception = () =>  {
                     <h3><u>Datos de la Motocicleta</u></h3>
                     <form action="#" method="post">
                         <li>
-                            <label for="nombre">Marca: </label>
-                            <input type="text" id="nombre" name="nombre" required />
+                            <label for="marca">Marca: </label>
+                            <input type="text" id="marca" name="marca" required />
                         </li>
                         <li>
-                            <label for="apellidos">Modelo: </label>
-                            <input type="text" id="apellidos" name="apellidos" required />
+                            <label for="modelo">Modelo: </label>
+                            <input type="text" id="modelo" name="modelo" required />
                         </li>
                         <li>
-                            <label for="domicilio">Color: </label>
-                            <input type="text" id="domicilio" name="domicilio" required />
-                        </li>
-                        <li>
-                            <label for="telefono">Año: </label>
-                            <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" placeholder="Ej. 1234567890"
+                            <label for="año">Año: </label>
+                            <input type="tel" id="año" name="año" pattern="[0-9]{10}" placeholder="Ej. 1234567890"
                                 required />
                         </li>
                         <li>
@@ -91,7 +125,7 @@ export const Reception = () =>  {
                 </section>
 
                 <div className="guardar">
-                    <button className="boton-guardar-datos">Guardar Datos</button>
+                    <button onClick={handleReceptionForm} className="boton-guardar-datos">Guardar Datos</button>
                 </div>
             </div>
 
@@ -111,10 +145,11 @@ export const Reception = () =>  {
                         />
                     </div>
                     <div>
-                        <button onClick={() =>
+                        <button onClick={() => {
                             setTask([...task,
                             { id: taskId++, nametask: nametask }
-                            ])} className="boton-agregar">Agregar tarea
+                            ]), console.log(task)
+                        }} className="boton-agregar">Agregar tarea
                         </button>
                     </div>
 
@@ -134,7 +169,6 @@ export const Reception = () =>  {
                     </ul>
                 </div>
             </section>
-
         </div>
     </>)
 }

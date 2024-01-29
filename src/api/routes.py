@@ -19,7 +19,6 @@ CORS(api)
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
-    print(username, password)
     user = User.query.filter_by(email = username).first()
     if user and user.password == password:
         access_token = create_access_token(identity=username)
@@ -70,6 +69,7 @@ def newMotorbike():
     client_id = request.json.get("client_id", None)
     if not brand or not model or not year or not mileage or not tasks or not client_id:
         return jsonify({"msg":"Fields required"}), 400
+    print(tasks)
     newMotorbike = Motorbikes(brand = brand,
                         model = model,
                         mileage = mileage,
