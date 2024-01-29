@@ -13,12 +13,13 @@ from flask_jwt_extended import jwt_required
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
-#CORS(api)
+CORS(api)
 
 @api.route("/login", methods=["POST"])
 def login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
+    print(username, password)
     user = User.query.filter_by(email = username).first()
     if user and user.password == password:
         access_token = create_access_token(identity=username)
@@ -95,6 +96,24 @@ def update_tasks():
     motorbikeBDD.query.update({"tasks":update_tasks})
     db.session.commit()
     return jsonify({"msg":"Task updated"})
+
+@api.route("/update_status", methods=["PUT"])
+@jwt_required()
+def update_status():
+    motorbike_id = request.json.get("motorbike_id", None)
+    motorbikeBDD = Motorbikes.query.filter_by(id = motorbike_id).first()
+    motorbikeBDD.query.update({"status":True})
+    db.session.commit()
+    return jsonify({"msg":"Status updated"})
+
+@api.route("/delete_moto", methods=["DELETE"])
+@jwt_required()
+def delete_moto():
+    motorbike_id = request.json.get("motorbike_id", None)
+    motorbikeBDD = Motorbikes.query.filter_by(id = motorbike_id).first()
+    db.session.delete(motorbikeBDD)
+    db.session.commit()
+    return jsonify({"msg":"Motorbike deleted"})
 
 if __name__ == "__main__":
     app.run()
