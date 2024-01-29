@@ -29,7 +29,7 @@ export const Login = () => {
        <div className="login">
         <img id="loginLogo" src={ logo } />
     </div>
-    <section>
+    <section className="hellblade-login">
         <div className="login-contenedor">
             <div className="formulario">
                 <form action="#">
@@ -50,12 +50,10 @@ export const Login = () => {
                         <button onClick={handleLoginForm} className="boton-iniciar" type="button">Iniciar sesión</button>
                     </Link> 
                     <div className="registrar">
-                        <p>No estas registrado<a href="..\Images\gorila faltón.jpg"> Contacta con RRHH</a></p>
+                        <p>No estás registrado <a href="/modal"> Contacta con RRHH</a></p>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-       </div>
     </>)
 }

@@ -17,22 +17,23 @@
     z-index: -10;
   }
 
+  .hellblade-login {
+    font-family: "Racing Sans One", sans-serif;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5rem;
+  }
+
   .login {
     display: flex;
     height: 90%;
-    margin-left: 3%;
+    margin-left: 10%;
     padding: 3em;
     position: relative;
     z-index: 10;
   }
   
-  section {
-    font-family: "Racing Sans One", sans-serif;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 9rem;
-  }
   
   .login-contenedor {
     position: relative;

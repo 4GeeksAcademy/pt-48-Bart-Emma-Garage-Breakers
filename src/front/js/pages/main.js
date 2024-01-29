@@ -47,13 +47,13 @@ export const Main = () => {
         </div>
 
         <div className="taller">
-            <Link to="\garage">
+            <Link to="/garage">
                 <button className="boton-taller">TALLER</button>
             </Link>
         </div>
 
         <div className="volver">
-            <Link to="/login">
+            <Link to="/">
                 <button className="boton-volver-main">Volver</button>
             </Link>
         </div>
