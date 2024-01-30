@@ -81,8 +81,8 @@ export const Reception = () => {
 
             <section className="contenedor-tareas">
                 <div className="contenedor-agregar-tareas">
-                    <div>
-                        <input className="entrada-tareas" value={nametask}
+                    <div className="lista-tareas-recepcion">
+                        <input className="input-tareas" value={nametask}
                             onChange={e => setNameTask(e.target.value)}
                         />
                     </div>

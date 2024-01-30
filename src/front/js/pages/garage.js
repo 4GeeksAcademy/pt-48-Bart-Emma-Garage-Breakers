@@ -67,7 +67,7 @@ export const Garage = () => {
 
             <div className="volver">
                 <Link to="/main">
-                    <button className="boton-volver-recepcion">Volver</button>
+                    <button className="boton-volver-taller">Volver</button>
                 </Link>
             </div>
 
@@ -105,7 +105,11 @@ export const Garage = () => {
                     <button className="boton-enviar">Enviar</button>
                 </div>
             </section>
-
+            <section className="contenedor-lista-motos">
+                <div className="titulo-listado">
+                    <h2>Lista de Motocicletas</h2>
+                </div>
+            </section>
         </div>
     </>)
 }

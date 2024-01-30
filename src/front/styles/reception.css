@@ -126,9 +126,16 @@ li {
     justify-content: space-between;
 }
 
-.entrada-tareas {
+.input-tareas {
     width: 370px;
     box-shadow: none;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    transform: translate(-2rem, -17em);
+    align-items: start;
 }
 
 .boton-agregar {
