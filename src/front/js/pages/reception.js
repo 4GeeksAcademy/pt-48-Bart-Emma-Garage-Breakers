@@ -145,7 +145,7 @@ export const Reception = () => {
                         <button onClick={() => {
                             setTask([...task,
                             { id: taskId, nametask: nametask }
-                            ]), setTaskID(taskId + 1), console.log(taskId, "caca")
+                            ]), setTaskID(taskId + 1)
                         }} className="boton-agregar">Agregar tarea
                         </button>
                     </div>

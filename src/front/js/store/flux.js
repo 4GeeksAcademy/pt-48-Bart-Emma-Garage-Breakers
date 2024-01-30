@@ -60,7 +60,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch(process.env.BACKEND_URL + "api/new_client", requestOptions)
 					const data = await resp.json();
 					console.log("ok", data);
-					console.log("recaco")
 					return data.id;
 				}
 				catch (error) {
@@ -91,6 +90,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json();
 					console.log("ok", data);
 					return data.id;
+				}
+				catch (error) {
+					console.error("There has been an error login in", error)
+				}
+			},
+
+			getMotos: async () => {
+				const actions = getActions();
+				const requestOptions = {
+					method: "GET",
+					headers: {
+
+						"Authorization": "Bearer " + localStorage.getItem("token")
+					},
+
+				};
+				try {
+
+					const resp = await fetch(process.env.BACKEND_URL + "api/motorbikes_list", requestOptions)
+					const data = await resp.json();
+					console.log("ok", data);
+					return data.motorbikes_list;
 				}
 				catch (error) {
 					console.error("There has been an error login in", error)
