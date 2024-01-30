@@ -22,7 +22,6 @@ export const Reception = () => {
             "email": document.getElementById("email").value,
             "phone": document.getElementById("telefono").value
         }
-        console.log(clienteBody, "suicidio");
         await handleMotorbikeForm(await actions.addCliente(clienteBody), tasks);
     }
     const handleMotorbikeForm = async (clienteID, tasks) => {
@@ -35,8 +34,6 @@ export const Reception = () => {
             "tasks": { "matarme": 0 },
             "client_id": clienteID
         }
-        console.log(motoBody, "caca")
-        console.log(clienteID, "maximum cacs")
         const addMoto = await actions.addMoto(document.getElementById("marca").value,
             document.getElementById("modelo").value,
             document.getElementById("año").value,
@@ -44,7 +41,7 @@ export const Reception = () => {
             JSON.stringify(tasks),
             clienteID);
     };
-    let taskId = 0;
+    const [taskId, setTaskID] = useState(0);
     async function isPrivate() {
         try {
             const requestOptions = {
@@ -147,8 +144,8 @@ export const Reception = () => {
                     <div>
                         <button onClick={() => {
                             setTask([...task,
-                            { id: taskId++, nametask: nametask }
-                            ]), console.log(task)
+                            { id: taskId, nametask: nametask }
+                            ]), setTaskID(taskId + 1), console.log(taskId, "caca")
                         }} className="boton-agregar">Agregar tarea
                         </button>
                     </div>
