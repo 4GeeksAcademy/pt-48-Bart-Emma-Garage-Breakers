@@ -96,6 +96,54 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			changeState: async (id) => {
+				const actions = getActions();
+				const requestOptions = {
+					method: "PUT",
+					headers: {
+						"Content-type": "application/json",
+						"Authorization": "Bearer " + localStorage.getItem("token")
+					},
+					body: JSON.stringify({
+						"motorbike_id": id
+					})
+				};
+				try {
+
+					const resp = await fetch(process.env.BACKEND_URL + "api/update_status", requestOptions)
+					const data = await resp.json();
+					console.log("ok", data);
+					return data;
+				}
+				catch (error) {
+					console.error("There has been an error login in", error)
+				}
+			},
+
+			deleteMoto: async (id) => {
+				const actions = getActions();
+				const requestOptions = {
+					method: "DELETE",
+					headers: {
+						"Content-type": "application/json",
+						"Authorization": "Bearer " + localStorage.getItem("token")
+					},
+					body: JSON.stringify({
+						"motorbike_id": id
+					})
+				};
+				try {
+
+					const resp = await fetch(process.env.BACKEND_URL + "api/delete_moto", requestOptions)
+					const data = await resp.json();
+					console.log("ok", data);
+					return data;
+				}
+				catch (error) {
+					console.error("There has been an error login in", error)
+				}
+			},
+
 			getMotos: async () => {
 				const actions = getActions();
 				const requestOptions = {
