@@ -17,7 +17,13 @@ export const Garage = () => {
     useEffect(() => {
         getMotos()
     }, []);
-
+    let tareas = ""
+    if (motoInfo[motoCount]) {
+        tareas = Object.keys(motoInfo[motoCount].tasks)
+        tareas = tareas.map((t) => (
+            <li>{t}</li>
+        ))
+    }
     return (<div id="wrapper-total">
         <div id="flechaI"><img src={flecha} onClick={() => { if (motoCount > 0) { setMotoCount(motoCount - 1) } }} /></div>
         <div id="wrapper-card">
@@ -29,6 +35,7 @@ export const Garage = () => {
                         <li>Marca: {motoInfo[motoCount] ? motoInfo[motoCount].brand : " -"}</li>
                         <li>Año: {motoInfo[motoCount] ? motoInfo[motoCount].year : " -"}</li>
                         <li>Kilómetros: {motoInfo[motoCount] ? motoInfo[motoCount].mileage : " -"}</li>
+                        {motoInfo[motoCount] ? tareas : " -"}
                     </ul>
                 </div>
             </div>

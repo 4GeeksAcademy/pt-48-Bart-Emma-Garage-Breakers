@@ -15,7 +15,9 @@ export const Reception = () => {
         e.preventDefault();
         let tasks = task.map(t => [t.nametask, 0])
         tasks = Object.fromEntries(tasks)
-        tasks = JSON.stringify(tasks)
+
+
+
         const clienteBody = {
             "name": document.getElementById("nombre").value,
             "surname": document.getElementById("apellidos").value,
@@ -26,20 +28,13 @@ export const Reception = () => {
     }
     const handleMotorbikeForm = async (clienteID, tasks) => {
 
-        const motoBody = {
-            "brand": document.getElementById("marca").value,
-            "model": document.getElementById("modelo").value,
-            "mileage": document.getElementById("kilometros").value,
-            "year": document.getElementById("año").value,
-            "tasks": { "matarme": 0 },
-            "client_id": clienteID
-        }
         const addMoto = await actions.addMoto(document.getElementById("marca").value,
             document.getElementById("modelo").value,
             document.getElementById("año").value,
             document.getElementById("kilometros").value,
-            JSON.stringify(tasks),
+            tasks,
             clienteID);
+
     };
     const [taskId, setTaskID] = useState(0);
     async function isPrivate() {
