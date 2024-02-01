@@ -41,7 +41,7 @@ export const Garage = () => {
             const response = await window.gapi.client.sheets.spreadsheets.values
                 .get({
                     spreadsheetId: "17JJSc8vXHsQ8-T9d6drNY-IYrC7FnoxPpaEMbV1Lfqk",
-                    range: "Hoja 1!A2"
+                    range: "Hoja 1!A:A"
                 });
             const data = response.result.values;
             return data;
@@ -53,9 +53,11 @@ export const Garage = () => {
 
     async function handleImport() {
         const data = await importInfo()
-        setInfo(JSON.parse(data))
-
+        setInfo(await data)
+        console.log("FETCH", data)
+        if (data.length > 3) {
         handleReceptionForm()
+        }
     }
     console.log(info, "caco")
     useEffect(() => {
@@ -69,6 +71,7 @@ export const Garage = () => {
     let tareas = ""
     let estado = ""
     if (motoInfo[motoCount]) {
+        clientName()
         tareas = Object.keys(motoInfo[motoCount].tasks)
         tareas = tareas.map((t) => (
             <li>{t}</li>
@@ -89,28 +92,32 @@ export const Garage = () => {
         getMotos()
     }
 
-    const handleReceptionForm = async (e) => {
+    const handleReceptionForm = async () => {
         let tasks = ""
-        const clienteBody = {
-            "name": info.name,
-            "surname": info.surname,
-            "email": info.email,
-            "phone": info.phone,
-        }
-        console.log(clienteBody, "caca")
-        await handleMotorbikeForm(await actions.addCliente(clienteBody), tasks);
-    }
-    const handleMotorbikeForm = async (clienteID, tasks) => {
 
-        const addMoto = await actions.addMoto(info.brand,
-            info.model,
-            info.year,
-            info.mileage,
-            info.tasks,
+        info.forEach(async e => {
+            let data = JSON.parse(e)
+            const clienteBody = {
+                "name": data.name,
+                "surname": data.surname,
+                "email": data.email,
+                "phone": data.phone,
+            }
+            await handleMotorbikeForm(await actions.addCliente(clienteBody), data)
+        });
+    }
+    const handleMotorbikeForm = async (clienteID, data) => {
+
+        const addMoto = await actions.addMoto(data.brand,
+            data.model,
+            data.year,
+            data.mileage,
+            data.tasks,
             clienteID);
+        console.log(data.model, data.year, data.mileage, data.tasks, clienteID, "DATA")
         getMotos()
     };
-    clientName()
+    
     return (<div id="wrapper-total">
         <div id="flechaI"><img src={flecha} onClick={() => { if (motoCount > 0) { setMotoCount(motoCount - 1) } }} /></div>
         <div id="wrapper-card">
