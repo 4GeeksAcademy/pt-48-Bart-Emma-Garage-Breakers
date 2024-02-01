@@ -31,7 +31,7 @@ const Layout = () => {
                         <Route element={<Garage />} path="/garage" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
+                    
                 </ScrollToTop>
             </BrowserRouter>
         </div>

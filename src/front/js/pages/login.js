@@ -5,6 +5,7 @@ import "../../styles/login.css";
 import { Link, Navigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
 import { Modal, Button } from 'react-bootstrap';
+import { Footer } from "../component/footer";
 
 export const Login = () => {
     const { actions } = useContext(Context);
@@ -91,5 +92,6 @@ export const Login = () => {
                 </div>
             </section>
         </div>
+        <Footer />
     </>)
 }
