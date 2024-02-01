@@ -112,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const resp = await fetch(process.env.BACKEND_URL + "api/new_motorbike", requestOptions)
 					const data = await resp.json();
 					console.log("ok", data);
-					return data.id;
+					return data.msg;
 				}
 				catch (error) {
 					console.error("There has been an error login in", error)

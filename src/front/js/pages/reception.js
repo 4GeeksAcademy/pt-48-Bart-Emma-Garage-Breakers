@@ -17,7 +17,7 @@ export const Reception = () => {
 
     const handleReceptionForm = async (e) => {
         e.preventDefault();
-        setShowModal(true)
+
         let tasks = task.map(t => [t.nametask, 0])
         tasks = Object.fromEntries(tasks)
 
@@ -50,6 +50,10 @@ export const Reception = () => {
         document.getElementById("kilometros").value = ""
         document.getElementById("inputTareas").value = ""
         setTask([])
+        if (addMoto == "New motorbike added") {
+            setShowModal(true)
+        }
+
 
     };
     const [taskId, setTaskID] = useState(0);
