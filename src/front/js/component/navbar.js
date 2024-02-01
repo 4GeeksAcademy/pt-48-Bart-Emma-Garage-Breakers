@@ -1,17 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+	let navigate = useNavigate();
+	function logOut() {
+		localStorage.setItem("token", "");
+
+	}
+
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+				<Link to="/main">
+					<span className="navbar-brand mb-0 h1">Hellblade Customs</span>
 				</Link>
 				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Check the Context in action</button>
-					</Link>
+
+					<button className="btn btn-primary" onClick={() => { logOut, navigate("/") }}>Log out</button>
+
 				</div>
 			</div>
 		</nav>

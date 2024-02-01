@@ -1,0 +1,15 @@
+.card {
+    width: 50vh;
+    height: auto;
+    margin:auto;
+    margin-top: 40vh;
+}
+
+#flechaD img, #flechaI img {
+width: 50px;
+height: auto;
+}
+
+#flechaD img {
+    transform: rotate(180deg);
+}
