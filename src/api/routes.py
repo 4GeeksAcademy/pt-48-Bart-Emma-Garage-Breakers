@@ -26,6 +26,18 @@ def login():
     else:
         return jsonify({"msg": "Wrong user or password"}), 400
     
+@api.route("/signUp", methods=["POST"])
+def signUp():
+    username = request.json.get("username", None)
+    password = request.json.get("password", None)
+    newUser = User(email = username,
+                        password = password,
+                        is_active = True)
+                        
+    db.session.add(newUser)
+    db.session.commit()
+    return jsonify({"msg":"Usuario creado"})
+        
 # Protect a route with jwt_required, which will kick out requests
 # without a valid JWT present.
 @api.route("/protected", methods=["GET"])

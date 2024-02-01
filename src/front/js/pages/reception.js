@@ -3,6 +3,7 @@ import logoform from "../../img/logoform.png";
 import "../../styles/reception.css";
 import { Link, Navigate } from "react-router-dom";
 import { Context } from "../store/appContext.js";
+import { Modal, Button } from 'react-bootstrap';
 
 export const Reception = () => {
     const { actions } = useContext(Context);
@@ -10,9 +11,13 @@ export const Reception = () => {
     const [nametask, setNameTask] = useState(' ');
     const [task, setTask] = useState([]);
     const [cliente, setCliente] = useState();
+    const [showModal, setShowModal] = useState(false);
+    const handleShow = () => setShowModal(true);
+    const handleClose = () => setShowModal(false);
 
     const handleReceptionForm = async (e) => {
         e.preventDefault();
+        setShowModal(true)
         let tasks = task.map(t => [t.nametask, 0])
         tasks = Object.fromEntries(tasks)
 
@@ -34,6 +39,17 @@ export const Reception = () => {
             document.getElementById("kilometros").value,
             tasks,
             clienteID);
+
+        document.getElementById("nombre").value = ""
+        document.getElementById("apellidos").value = ""
+        document.getElementById("email").value = ""
+        document.getElementById("telefono").value = ""
+        document.getElementById("marca").value = ""
+        document.getElementById("modelo").value = ""
+        document.getElementById("año").value = ""
+        document.getElementById("kilometros").value = ""
+        document.getElementById("inputTareas").value = ""
+        setTask([])
 
     };
     const [taskId, setTaskID] = useState(0);
@@ -118,6 +134,19 @@ export const Reception = () => {
 
                 <div className="guardar">
                     <button onClick={handleReceptionForm} className="boton-guardar-datos">Guardar Datos</button>
+                    <Modal show={showModal} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Registro completo</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>Los datos serán redirigidos a Taller</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Cerrar
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
 
@@ -132,7 +161,7 @@ export const Reception = () => {
             <section className="contenedor-tareas">
                 <div className="contenedor-agregar-tareas">
                     <div>
-                        <input className="entrada-tareas" value={nametask}
+                        <input className="entrada-tareas" id="inputTareas"
                             onChange={e => setNameTask(e.target.value)}
                         />
                     </div>
@@ -140,7 +169,7 @@ export const Reception = () => {
                         <button onClick={() => {
                             setTask([...task,
                             { id: taskId, nametask: nametask }
-                            ]), setTaskID(taskId + 1)
+                            ]), document.getElementById("inputTareas").value = "", setTaskID(taskId + 1)
                         }} className="boton-agregar">Agregar tarea
                         </button>
                     </div>
@@ -154,7 +183,7 @@ export const Reception = () => {
                                         a.id !== taskItem.id
                                     ));
                                 }} className="boton-eliminar">
-                                    X
+                                    x
                                 </button>
                             </li>
                         ))}

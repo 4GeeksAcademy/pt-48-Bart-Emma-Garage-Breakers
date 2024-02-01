@@ -62,5 +62,6 @@ export const Garage = () => {
             </div>
         </div>
         <div id="flechaD"><img src={flecha} onClick={() => { if (motoCount < motoInfo.length - 1) { setMotoCount(motoCount + 1) } }} /></div>
+
     </div>)
 }
