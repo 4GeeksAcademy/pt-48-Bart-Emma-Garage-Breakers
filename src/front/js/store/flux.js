@@ -189,6 +189,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			getClientes: async () => {
+				const actions = getActions();
+				const requestOptions = {
+					method: "GET",
+					headers: {
+
+						"Authorization": "Bearer " + localStorage.getItem("token")
+					},
+
+				};
+				try {
+
+					const resp = await fetch(process.env.BACKEND_URL + "api/clients_list", requestOptions)
+					const data = await resp.json();
+
+					return data.clients_list;
+				}
+				catch (error) {
+					console.error("There has been an error login in", error)
+				}
+			},
+
 			getMessage: async () => {
 				try {
 					// fetching data from the backend

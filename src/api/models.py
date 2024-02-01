@@ -47,6 +47,7 @@ class Motorbikes(db.Model):
 
     def serialize(self):
         return {
+            "clientID": self.client_id,
             "id": self.id,
             "brand": self.brand,
             "model": self.model,

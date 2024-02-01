@@ -9,15 +9,62 @@ export const Garage = () => {
     const [motoCount, setMotoCount] = useState(0)
     const [motoInfo, setMotoInfo] = useState([])
     const [count, setCount] = useState(0)
-
+    const [info, setInfo] = useState("")
+    const [clienteInfo, setClienteInfo] = useState([])
     async function getMotos() {
         setMotoInfo(await actions.getMotos())
-
     }
 
+    async function getClientes() {
+        setClienteInfo(await actions.getClientes())
+    }
+    let propietario = ""
+    function clientName() {
+        clienteInfo.forEach(e => {
+            if (e.id == motoInfo[motoCount].clientID) {
+                propietario = e.name
+            }
+        });
+    }
+
+    function initClient() {
+        // 2. Initialize the JavaScript client library.
+        window.gapi.client
+            .init({
+                apiKey: "AIzaSyB3cgot9HcPyBEzmu8g6DvtQS9TuR_n4bg",
+            })
+    };
+
+    async function importInfo() {
+        try {
+            window.gapi.client.load("sheets", "v4");
+            const response = await window.gapi.client.sheets.spreadsheets.values
+                .get({
+                    spreadsheetId: "17JJSc8vXHsQ8-T9d6drNY-IYrC7FnoxPpaEMbV1Lfqk",
+                    range: "Hoja 1!A2"
+                });
+            const data = response.result.values;
+            return data;
+        } catch (error) {
+            console.error("Error loading", error)
+            return null;
+        }
+    }
+
+    async function handleImport() {
+        const data = await importInfo()
+        setInfo(JSON.parse(data))
+
+        handleReceptionForm()
+    }
+    console.log(info, "caco")
     useEffect(() => {
         getMotos()
+        getClientes()
+        window.gapi.load("client", initClient)
     }, []);
+    console.log(clienteInfo, "caco2")
+    console.log(motoInfo, "caco3")
 
     let tareas = ""
     let estado = ""
@@ -42,22 +89,50 @@ export const Garage = () => {
         getMotos()
     }
 
+    const handleReceptionForm = async (e) => {
+        let tasks = ""
+        const clienteBody = {
+            "name": info.name,
+            "surname": info.surname,
+            "email": info.email,
+            "phone": info.phone,
+        }
+        console.log(clienteBody, "caca")
+        await handleMotorbikeForm(await actions.addCliente(clienteBody), tasks);
+    }
+    const handleMotorbikeForm = async (clienteID, tasks) => {
+
+        const addMoto = await actions.addMoto(info.brand,
+            info.model,
+            info.year,
+            info.mileage,
+            info.tasks,
+            clienteID);
+        getMotos()
+    };
+    clientName()
     return (<div id="wrapper-total">
         <div id="flechaI"><img src={flecha} onClick={() => { if (motoCount > 0) { setMotoCount(motoCount - 1) } }} /></div>
         <div id="wrapper-card">
             <div className="card">
                 <div class="card-body">
-                    <h5 class="card-title">Motocicletas</h5>
+                    <h5>Propietario</h5> {propietario}
+                    <hr />
+                    <h5 class="card-title">Motocicleta</h5>
                     <ul class="card-text">
-                        <li>Modelo: {motoInfo[motoCount] ? motoInfo[motoCount].model : " -"}</li>
                         <li>Marca: {motoInfo[motoCount] ? motoInfo[motoCount].brand : " -"}</li>
+                        <li>Modelo: {motoInfo[motoCount] ? motoInfo[motoCount].model : " -"}</li>
                         <li>Año: {motoInfo[motoCount] ? motoInfo[motoCount].year : " -"}</li>
                         <li>Kilómetros: {motoInfo[motoCount] ? motoInfo[motoCount].mileage : " -"}</li>
+                        <hr />
+                        <h5>Tareas</h5>
                         {motoInfo[motoCount] ? tareas : " -"}
                     </ul>
+
                     <button onClick={handleStatus}>{motoInfo[motoCount] ? estado : " -"}</button>
                     <button onClick={handleDelete}>Borrar</button>
-                    <button>API Externa</button>
+                    <button onClick={handleImport}>Importar registros</button>
+
                 </div>
             </div>
         </div>
