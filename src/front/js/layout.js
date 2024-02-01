@@ -6,6 +6,7 @@ import { Main } from "./pages/main";
 import { Reception } from "./pages/reception";
 import { Garage } from "./pages/garage";
 import { Login } from "./pages/login";
+import { AboutUs } from "./pages/presentacion"
 import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -30,8 +31,9 @@ const Layout = () => {
                         <Route element={<Reception />} path="/reception" />
                         <Route element={<Garage />} path="/garage" />
                         <Route element={<h1>Not found!</h1>} />
+                        <Route element={<AboutUs />} path="/AboutUs" />
                     </Routes>
-                    
+
                 </ScrollToTop>
             </BrowserRouter>
         </div>

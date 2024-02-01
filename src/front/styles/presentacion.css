@@ -1,0 +1,110 @@
+.presentacion-wrapper {
+    background-color: black;
+    height: 100vh;
+    position: relative;
+}
+
+.background-presentacion {
+    display: flex;
+    position: absolute;
+    border: 3px solid rgb(255, 115, 0);
+    border-radius: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.contenedor-presentacion {
+    position: absolute;
+    display: flex;
+    height: 80%;
+    width: 65%;
+    top: 10%;
+    left: 17%;
+}
+
+.btn-home-container {
+    display: flex;
+    position: absolute;
+    width: 94%;
+    margin-top: 1%;
+    justify-content: end;
+}
+
+.btn-home {
+    position: absolute;
+    width: 50px;
+    border-radius: 20px;
+    border: 3px solid rgb(255, 115, 0);
+    box-shadow: 5px 5px 5px black;
+}
+
+.btn-home:hover{
+    color: rgb(255, 115, 0);
+    background-color: black;
+    box-shadow:  5px 5px 5px black;
+}
+
+.titulo-presentacion h2{
+    display: flex;
+    position: absolute;
+    color: white;
+    text-shadow: 5px 5px 5px black;
+    z-index: 10;
+    padding: 1%;
+    font-family: "Racing Sans One", sans-serif;
+}
+
+.container-photo1 {
+    display: flex;
+    align-items: start;
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    margin-top: 8%;
+    left: 8%;
+    justify-content: center;
+    background-color: black;
+    border: 3px solid rgb(255, 115, 0);
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px black;
+}
+
+.descripcion1 {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60%;
+    font-family: "Racing Sans One", sans-serif;
+    color: white;
+    height: 40%;
+    width: 80%;
+}
+
+.photo1 {
+    max-width: 80%;
+    border: 3px solid white;
+    border-radius: 20px;
+    margin-top: 5%;
+}
+
+.container-photo2 {
+    display: flex;
+    align-items: start;
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    margin-top: 8%;
+    left: 52%;
+    justify-content: center;
+    background-color: black;
+    border: 3px solid rgb(255, 115, 0);
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px black;
+}
+
+.photo2 {
+    max-width: 80%;
+    border: 3px solid white;
+    border-radius: 20px;
+    margin-top: 5%;
+}

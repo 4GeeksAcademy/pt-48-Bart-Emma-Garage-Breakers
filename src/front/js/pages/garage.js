@@ -11,6 +11,7 @@ export const Garage = () => {
     const [count, setCount] = useState(0)
     const [info, setInfo] = useState("")
     const [clienteInfo, setClienteInfo] = useState([])
+    const [propietario, setPropietario] = useState("")
     async function getMotos() {
         setMotoInfo(await actions.getMotos())
     }
@@ -18,11 +19,14 @@ export const Garage = () => {
     async function getClientes() {
         setClienteInfo(await actions.getClientes())
     }
-    let propietario = ""
+
     function clientName() {
         clienteInfo.forEach(e => {
             if (e.id == motoInfo[motoCount].clientID) {
-                propietario = e.name
+                if (propietario != e.name) {
+                    setPropietario(e.name)
+                }
+
             }
         });
     }
@@ -56,17 +60,16 @@ export const Garage = () => {
         setInfo(await data)
         console.log("FETCH", data)
         if (data.length > 3) {
-        handleReceptionForm()
+            handleReceptionForm()
         }
     }
-    console.log(info, "caco")
+
     useEffect(() => {
         getMotos()
         getClientes()
         window.gapi.load("client", initClient)
     }, []);
-    console.log(clienteInfo, "caco2")
-    console.log(motoInfo, "caco3")
+
 
     let tareas = ""
     let estado = ""
@@ -103,6 +106,7 @@ export const Garage = () => {
                 "email": data.email,
                 "phone": data.phone,
             }
+            console.log(clienteBody, "caca")
             await handleMotorbikeForm(await actions.addCliente(clienteBody), data)
         });
     }
@@ -117,7 +121,7 @@ export const Garage = () => {
         console.log(data.model, data.year, data.mileage, data.tasks, clienteID, "DATA")
         getMotos()
     };
-    
+
     return (<div id="wrapper-total">
         <div id="flechaI"><img src={flecha} onClick={() => { if (motoCount > 0) { setMotoCount(motoCount - 1) } }} /></div>
         <div id="wrapper-card">
